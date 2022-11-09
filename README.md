@@ -8,7 +8,7 @@ To install the code, download the RMD file in the SRC folder. Open this in RStud
 This code can be used to understand the different components of a movie poster that may contribute to the movie's success. 
 
 ## DATA
-Our data was obtained from Kaggle [here](LINK).
+Our data was obtained from Kaggle [here](https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows).
 ### Data Dictionary
 | Column  | Description | Potential Values |
 | ------ |  ----------- | ----------------
