@@ -1,0 +1,55 @@
+---
+title: "Can We Judge a Movie by its Poster?"
+author: "Madeleine Ashby, Ayushi Ambhore, Sahil Patel"
+date: "11/9/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Import necessary libraries / packages
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(tstools)
+
+```
+
+# Hypothesis
+Using a supervised machine learning model taking into account features like dominant color, presence of faces, and amount of whitespace, we will be able to predict revenue for movies with 60% accuracy.
+
+# Exploratory Data Analysis
+
+## Data Collection
+In order to explore our hypothesis, we needed to find a database of movies with information including the poster, gross revenue, etc. The data we are using was obtained from Kaggle [1] and it’s a list of IMDB top 100 movies in csv format. It contains the information that is relevant to our hypothesis and contains movies from 1920-2020.
+
+## Data Cleaning
+```{r}
+# Load in data
+movies <- read_excel("C:/Users/Maddie/OneDrive/Desktop/4YEAR/DS4002/Project3/ds4002-proj3/DATA/imdb_top_1000.xlsx")
+
+# Drop unnecessary columns
+movies <- movies[,c(1,2,3,6,7,16)]
+
+# Drop rows with NA values
+movies <- na.omit(movies)
+movies <- subset(movies, movies$Released_Year!="PG")
+
+```
+
+
+```{r}
+# IMDB Rating Count
+ggplot(movies, aes(x=IMDB_Rating)) + geom_bar() + ggtitle("Number of Movies per IMDB Rating")
+```
+```{r}
+
+ggplot(movies, aes(x=Released_Year, y=Gross)) + geom_point() + ggtitle("Revenue vs Time") + theme(axis.text.x=element_text(angle = 90, vjust = 0.5))
+
+
+
+```
+
