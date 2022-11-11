@@ -19,7 +19,15 @@ Our data was obtained from Kaggle [here](https://www.kaggle.com/datasets/harshit
 ### Data Dictionary
 | Column  | Description | Potential Values |
 | ------ |  ----------- | ----------------
-| variable1  | description1 | potentialvalues1 |
+| Poster_Link  | A URL pointing to the image of the official movie poster | A string of the image URL |
+| Series_Title | The title of the movie | A string of texts with <= 280 characters |
+| Gross | The total revenue earned by that movie | Integer value from 1,300 to 937,000,000 |
+| IMDB_Rating | The rating of the movie on IMDB | Integer value from 7.6 to 9.3 |
+| Released_Year | The year that the movie was released | A string containing numerical values from the year  1920 to 2020 |
+| Genre | The genres that the movie belongs to | A string containing different combinations of genres with no more than 4 different genres per movie |
+| Whitespace_Rate | The percentage of pixels in the image that are white | Integer value from 0 to 1 |
+| face | | |
+| color | | |
 
 ## FIGURES
 | Figure Number | Figure Name | Key Takeaways |
