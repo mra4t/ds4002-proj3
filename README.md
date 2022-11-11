@@ -50,3 +50,10 @@ Figure 1 | figure title | key takeaways
 [5] H. Shankhdhar, “IMDB movies dataset,” Kaggle, 01-Feb-2021. [Online]. Available: https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows. [Accessed: 02-Nov-2022]. 
 
 [6] “Find most used colors in image using Python,” GeeksforGeeks, 16-Oct-2021. [Online]. Available: https://www.geeksforgeeks.org/find-most-used-colors-in-image-using-python/. [Accessed: 02-Nov-2022]. 
+
+[7] Fraxel, “Convert RGB color to English color name, like 'green' with python,” Stack Overflow, 01-May-1959. [Online]. Available: https://stackoverflow.com/questions/9694165/convert-rgb-color-to-english-color-name-like-green-with-python. [Accessed: 09-Nov-2022].
+
+[8] “OpenCV - counting the number of black and white pixels in the image,” GeeksforGeeks, 22-Jan-2021. [Online]. Available: https://www.geeksforgeeks.org/opencv-counting-the-number-of-black-and-white-pixels-in-the-image/. [Accessed: 09-Nov-2022].
+
+[9] A. Sinha, “How to detect and extract faces from an image with opencv and python,” DigitalOcean, 27-Mar-2019. [Online]. Available: https://www.digitalocean.com/community/tutorials/how-to-detect-and-extract-faces-from-an-image-with-opencv-and-python. [Accessed: 09-Nov-2022].
+
