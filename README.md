@@ -2,13 +2,20 @@
 
 ## SRC
 ### Installing / Building the Code
-To install the code, download the RMD file in the SRC folder. Open this in RStudio and run the code. All of the libraries that need to be installed are already included at the top of the file, so the code solely needs to be ran to successfully build the code. 
+To install any of the code files, download the flile from the SRC folder.
+
+#### R Markdown Files (.Rmd)
+To run the R Markdown files, open the file in RStudio and execute.  All of the necessary libraries are listed at the top of the file, so you can install them if you do not already have them, and then run the file to build the code.
+
+#### Python Files (.py)
+To run the Python files, you can either open the file in your preferred IDE and run the code, or you can execute on the command line using "python3 <filename.py>".  The required packages are listed at the top of the file, so you can install them if you do not already have them, and then run the file to build the code.  Note that these files produce a Microsoft Excel Sheet in the directory in which you download them.
 
 ### Code Usage
-This code can be used to understand the different components of a movie poster that may contribute to the movie's success. 
+This code makes use of a Decision Tree Model to determine which components/attributes of a movie poster contribute to the movie's success. 
 
 ## DATA
 Our data was obtained from Kaggle [here](https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows).
+
 ### Data Dictionary
 | Column  | Description | Potential Values |
 | ------ |  ----------- | ----------------
