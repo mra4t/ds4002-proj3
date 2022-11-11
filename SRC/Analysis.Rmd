@@ -1,0 +1,200 @@
+---
+title: "Image Analysis of Movie Posters"
+author: "Madeleine Ashby, Ayushi Ambhore, Sahil Patel"
+date: "11/11/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Load libraries}
+# Import necessary libraries
+library(readxl)
+library(dplyr)
+library(psych)
+library(ggplot2)
+library(mltools)
+library(caret)
+options(warn=-1)
+```
+
+# Setup Data
+
+```{r Load All Data}
+# Import data
+movies <- read_excel("C:/Users/Maddie/OneDrive/Desktop/4YEAR/DS4002/Project3/ds4002-proj3/DATA/imdb_top_1000.xlsx")
+
+whitespace <- read_excel("C:/Users/Maddie/OneDrive/Desktop/4YEAR/DS4002/Project3/ds4002-proj3/DATA/whitespace.xlsx")
+
+```
+## Data Cleaning
+```{r Data Cleaning}
+# Drop unnecessary columns
+movies <- movies[,c(1,2,3,6,7,16)]
+
+# Remove NA values & weird values
+movies <- na.omit(movies)
+
+
+```
+
+### Joining image extraction with original dataset
+```{r Joining Datasets}
+# Add whitespace
+movies[,7] = whitespace[,4]
+
+# Add face detection
+
+# Add color analysis
+
+```
+
+### Further Cleaning
+```{r}
+# Drop columns that do not have numeric values, and drop IMDB Rating
+movies <- movies[,-c(1,2,3,4)]
+
+```
+
+
+
+# Analysis
+
+## Prep
+
+### Scale / Center / Normalize
+```{r Normalizing Numeric Vectors}
+# Min-max normalize function
+normalize <- function(x){
+ (x - min(x)) / (max(x) - min(x))
+}
+
+numerics <- names(select_if(movies, is.numeric))
+movies[numerics] <- as_tibble(lapply(movies[numerics], normalize))
+
+
+```
+
+
+### Baseline / Prevalence
+```{r Computing Prevalence}
+describe(movies$Gross) # Get median for cutting the data to factor
+
+movies$Gross_Factor <- cut(movies$Gross,c(-1,.02,1),labels = c(0,1))
+
+# Prevalence = 47.46%
+(prevalence <- 1 - table(movies$Gross_Factor)[[2]]/length(movies$Gross_Factor))
+```
+
+## Building the Model
+```{r Partition the Data}
+# Drop "Gross" Column because we have Gross_Factor now.
+movies <- movies[, -2]
+
+# Data Partitioning
+part_index_1 <- caret::createDataPartition(movies$Gross_Factor,
+                                           times=1,
+                                           p = 0.70,
+                                           groups=1,
+                                           list=FALSE)
+
+train <- movies[part_index_1,]
+tune_and_test <- movies[-part_index_1, ]
+
+tune_and_test_index <- createDataPartition(tune_and_test$Gross_Factor,
+                                           p = .5,
+                                           list = FALSE,
+                                           times = 1)
+
+tune <- tune_and_test[tune_and_test_index, ]
+test <- tune_and_test[-tune_and_test_index, ]
+
+dim(train)
+dim(tune)
+dim(test)
+```
+
+### Cross Validation
+```{r CV}
+fitControl <- trainControl(method = "repeatedcv",
+                          number = 10,
+                          repeats = 5, 
+                          returnResamp="all")
+```
+
+### Training & Evaluation
+```{r Training & Evaluation}
+features <- train[,-c(3)]
+
+target <- data.frame(Gross_Factor = train[,"Gross_Factor"])
+
+str(target)
+
+set.seed(1984)
+movies_mdl <- train(x=features,
+                y=target[,"Gross_Factor"],
+                trControl=fitControl,
+                method="C5.0",
+                verbose=TRUE)
+
+movies_mdl
+
+```
+Evaluate the model built by the training data (keep in mind the prevalance):
+The model built by the training data shows an accuracy of 1.  Our prevalence was found to be 0.8643, so this means that our model is useful in predicting the performance of new red wines in the market.
+
+### Tuning and Evaluation 
+```{r Tuning & Evaluation}
+
+movies_predict = predict(movies_mdl,tune,type= "raw")
+
+confusionMatrix(as.factor(movies_predict), 
+                as.factor(tune$Gross_Factor), 
+                dnn=c("Prediction", "Actual"), 
+                mode = "sens_spec")
+
+varImp(movies_mdl)
+
+plot(movies_mdl)
+
+
+grid <- expand.grid(.winnow = c(TRUE,FALSE), 
+                    .trials=c(20,30,40), 
+                    .model=c("tree","rules"))
+set.seed(1984)
+movies_mdl_tune <- train(x=features,
+                y=target$Gross_Factor,
+                tuneGrid=grid,
+                trControl=fitControl,
+                method="C5.0",
+                verbose=TRUE)
+
+movies_mdl_tune
+movies_mdl
+
+plot(movies_mdl_tune)
+
+# Want to evaluation again with the tune data using the new model 
+
+movies_predict_tune = predict(movies_mdl_tune,tune,type= "raw")
+
+confusionMatrix(as.factor(movies_predict_tune), 
+                as.factor(tune$Gross_Factor), 
+                dnn=c("Prediction", "Actual"), 
+                mode = "sens_spec")
+
+
+```
+
+### Testing
+```{r Testing}
+movies_predict_test = predict(movies_mdl_tune,test,type= "raw")
+
+confusionMatrix(as.factor(movies_predict_test), 
+                as.factor(test$Gross_factor), 
+                dnn=c("Prediction", "Actual"), 
+                mode = "sens_spec")
+```
+
