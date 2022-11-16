@@ -28,6 +28,10 @@ movies <- read_excel("C:/Users/Maddie/OneDrive/Desktop/4YEAR/DS4002/Project3/ds4
 
 whitespace <- read_excel("C:/Users/Maddie/OneDrive/Desktop/4YEAR/DS4002/Project3/ds4002-proj3/DATA/whitespace.xlsx")
 
+color <- read_excel("C:/Users/Maddie/OneDrive/Desktop/4YEAR/DS4002/Project3/ds4002-proj3/DATA/dominantColor.xlsx")
+
+faces <- read_excel("C:/Users/Maddie/OneDrive/Desktop/4YEAR/DS4002/Project3/ds4002-proj3/DATA/facedetection.xlsx")
+
 ```
 ## Data Cleaning
 ```{r Data Cleaning}
@@ -46,15 +50,17 @@ movies <- na.omit(movies)
 movies[,7] = whitespace[,4]
 
 # Add face detection
+movies[,8] = color[,4]
 
 # Add color analysis
+movies[,9] = faces[,4]
 
 ```
 
 ### Further Cleaning
 ```{r}
 # Drop columns that do not have numeric values, and drop IMDB Rating
-movies <- movies[,-c(1,2,3,4)]
+movies <- movies[,-c(1,2,3,4,5)]
 
 ```
 
@@ -91,7 +97,7 @@ movies$Gross_Factor <- cut(movies$Gross,c(-1,.02,1),labels = c(0,1))
 ## Building the Model
 ```{r Partition the Data}
 # Drop "Gross" Column because we have Gross_Factor now.
-movies <- movies[, -2]
+movies <- movies[, -1]
 
 # Data Partitioning
 part_index_1 <- caret::createDataPartition(movies$Gross_Factor,
@@ -126,7 +132,7 @@ fitControl <- trainControl(method = "repeatedcv",
 
 ### Training & Evaluation
 ```{r Training & Evaluation}
-features <- train[,-c(3)]
+features <- train[,-c(4)]
 
 target <- data.frame(Gross_Factor = train[,"Gross_Factor"])
 
@@ -142,8 +148,7 @@ movies_mdl <- train(x=features,
 movies_mdl
 
 ```
-Evaluate the model built by the training data (keep in mind the prevalance):
-The model built by the training data shows an accuracy of 1.  Our prevalence was found to be 0.8643, so this means that our model is useful in predicting the performance of new red wines in the market.
+
 
 ### Tuning and Evaluation 
 ```{r Tuning & Evaluation}
@@ -193,7 +198,7 @@ confusionMatrix(as.factor(movies_predict_tune),
 movies_predict_test = predict(movies_mdl_tune,test,type= "raw")
 
 confusionMatrix(as.factor(movies_predict_test), 
-                as.factor(test$Gross_factor), 
+                as.factor(test$Gross_Factor), 
                 dnn=c("Prediction", "Actual"), 
                 mode = "sens_spec")
 ```
