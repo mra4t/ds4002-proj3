@@ -8,7 +8,7 @@ To install any of the code files, download the flile from the SRC folder.
 To run the R Markdown files, open the file in RStudio and execute.  All of the necessary libraries are listed at the top of the file, so you can install them if you do not already have them, and then run the file to build the code.
 
 #### Python Files (.py)
-To run the Python files, you can either open the file in your preferred IDE and run the code, or you can execute on the command line using "python3 <filename.py>".  The required packages are listed at the top of the file, so you can install them if you do not already have them, and then run the file to build the code.  Note that these files produce a Microsoft Excel Sheet in the directory in which you download them.
+These files are primarly created to discern certain features from the poster images (i.e. white space). To run the Python files, you can either open the file in your preferred IDE and run the code, or you can execute on the command line using "python3 <filename.py>".  The required packages are listed at the top of the file, so you can install them if you do not already have them, and then run the file to build the code.  Note that these files produce a Microsoft Excel Sheet in the directory in which you download them.
 
 ### Code Usage
 This code makes use of a Decision Tree Model to determine which components/attributes of a movie poster contribute to the movie's success. 
