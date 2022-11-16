@@ -34,8 +34,10 @@ Our data was obtained from Kaggle [here](https://www.kaggle.com/datasets/harshit
 | ----------- | ------ |  ----------- |
 | Figure 1 | Number of Movies per IMDB Rating | The critical popularity of the movies we are performing analysis on have the most ratings between 7.6-8.0 |
 | Figure 2 | Revenue vs Time | More recent movies have brought in far more revenue; perhaps this is because of better technology allowing for better special effects and/or movie poster art. |
-| Figure 3 | ** | ** |
-| Figure 4 | ** | ** |
+| Figure 3 | Output of C5.0 Decision Tree Model | The most optimal model had 1 trial, winnow=false, and method=rules |
+| Figure 4 | Confusion Matrix After Testing | Accuracy is 51.24%|
+| Figure 5 | Confusion Matrix After Tuning | Accuracy is 51.24% |
+| Figure 6 | Confusion Matrix After Testing | Accuracy is 62.5% |
 
 ## REFERENCES
 [Milestone 1: Creating a Hypothesis](https://docs.google.com/document/d/1fQZCOykrO4nFIoZqL5Ej57IBHdYpFPkob-57JDN4Rl0/edit?usp=sharing)
