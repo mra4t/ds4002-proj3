@@ -32,7 +32,8 @@ Our data was obtained from Kaggle [here](https://www.kaggle.com/datasets/harshit
 ## FIGURES
 | Figure Number | Figure Name | Key Takeaways |
 | ----------- | ------ |  ----------- |
-Figure 1 | Number of Movies per IMDB Rating | The critical popularity of the movies we are performing analysis on have the most ratings between 7.6-8.0
+| Figure 1 | Number of Movies per IMDB Rating | The critical popularity of the movies we are performing analysis on have the most ratings between 7.6-8.0 |
+| Figure 2 | Revenue vs Time | More recent movies have brought in far more revenue; perhaps this is because of better technology allowing for better special effects and/or movie poster art. |
 
 ## REFERENCES
 [Milestone 1: Creating a Hypothesis](https://docs.google.com/document/d/1fQZCOykrO4nFIoZqL5Ej57IBHdYpFPkob-57JDN4Rl0/edit?usp=sharing)
