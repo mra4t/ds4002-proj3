@@ -26,8 +26,8 @@ Our data was obtained from Kaggle [here](https://www.kaggle.com/datasets/harshit
 | Released_Year | The year that the movie was released | A string containing numerical values from the year  1920 to 2020 |
 | Genre | The genres that the movie belongs to | A string containing different combinations of genres with no more than 4 different genres per movie |
 | Whitespace_Rate | The percentage of pixels in the image that are white | Integer value from 0 to 1 |
-| face | | |
-| color | | |
+| FaceDetection_values | The number of faces in the poster image | Integer value from 0-3|
+| Color_values | The hex value of the most dominant color in the poster image | |
 
 ## FIGURES
 | Figure Number | Figure Name | Key Takeaways |
