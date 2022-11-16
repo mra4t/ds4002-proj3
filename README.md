@@ -27,7 +27,7 @@ Our data was obtained from Kaggle [here](https://www.kaggle.com/datasets/harshit
 | Genre | The genres that the movie belongs to | A string containing different combinations of genres with no more than 4 different genres per movie |
 | Whitespace_Rate | The percentage of pixels in the image that are white | Integer value from 0 to 1 |
 | FaceDetection_values | The number of faces in the poster image | Integer value from 0-3|
-| Color_values | The hex value of the most dominant color in the poster image | |
+| Color_values | The hex value of the most dominant color in the poster image | Integer value from 0-16777215|
 
 ## FIGURES
 | Figure Number | Figure Name | Key Takeaways |
