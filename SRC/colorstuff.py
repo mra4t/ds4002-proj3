@@ -10,6 +10,8 @@ def url_to_image(url): #https://pyimagesearch.com/2015/03/02/convert-url-to-imag
     img = cv.imdecode(img, cv.IMREAD_COLOR)
     return img
 
+
+# https://www.codespeedy.com/convert-rgb-to-hex-color-code-in-python/
 def rgb_to_hex(rgb):
     return '%02x%02x%02x' % rgb
 
@@ -23,7 +25,9 @@ movies = movies[['Poster_Link', 'Series_Title']]
 
 # Loop through every image
 color = []
-counter = 0
+# counter = 0
+
+# used https://towardsdatascience.com/finding-most-common-colors-in-python-47ea0767a06a
 for url in movies['Poster_Link']:
     # Open image from URL
     img = url_to_image(url)
@@ -49,6 +53,7 @@ for url in movies['Poster_Link']:
 
     hex_color = rgb_to_hex((r, g, b))
 
+    # https://www.delftstack.com/howto/python/hex-to-decimal-python/#:~:text=Convert%20Hexadecimal%20to%20Decimal%20in%20Python%201%20Use,Function%20to%20Convert%20Hexadecimal%20to%20Integer%20in%20Python
     color_num = int(hex_color,16)
 
     # result = (r * 256 * 256) + (g * 256) + b
